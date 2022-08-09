@@ -10,7 +10,8 @@
  */
 int _printf(const char *format, ...)
 {
-	unsigned int length, i;
+	int i;
+	int length;
 	va_list ap;
 	int key = 1;
 
@@ -20,7 +21,7 @@ int _printf(const char *format, ...)
 		return (0);
 	if (length < 0)
 		return (0);
-	for (i = 0;i < length - 1; i++)
+	for (i = 0; i < length - 1; i++)
 	{
 		if (format[i] == '%' && (format[i + 1] != 'd' && format[i + 1] != 's' &&
 		format[i + 1] != 'c'))
