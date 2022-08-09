@@ -14,6 +14,7 @@ int _printf(const char *format, ...)
 	va_list valist;
 	int num = 0;
 	char *token = NULL;
+	char tokenC;
 	int i = 0;
 	int len = strlen(format);
 	int nprinted = 0;
@@ -88,18 +89,8 @@ int _printf(const char *format, ...)
 					{
 						found = 1;
 
-						token = va_arg(valist, char *);
-						if (token != NULL)
-						{
-							j = 0;
-
-							while (token[j] != '\0')
-							{
-								nprinted++;
-								putchar(token[j]);
-								j++;
-							}
-						}
+						tokenC = va_arg(valist, int);
+						putchar(tokenC);
 					}
 					break;
 			}
