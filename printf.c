@@ -93,9 +93,6 @@ int _printf(const char *format, ...)
 						putchar(tokenC);
 					}
 					break;
-				case '%':
-					i += 1;
-					break;
 			}
 			if (found != 0)
 			{
