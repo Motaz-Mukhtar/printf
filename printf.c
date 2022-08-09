@@ -21,7 +21,7 @@ int _printf(const char *format, ...)
 		return (0);
 	if (length < 0)
 		return (0);
-	for (i = 0; i < length; i++)
+	while (i = 0; i < length; i++)
 	{
 		if (format[i] == '%' && (format[i + 1] != 'd' && format[i + 1] != 's' &&
 		format[i + 1] != 'c'))
@@ -51,7 +51,6 @@ int _printf(const char *format, ...)
 			else
 				printf("%c", format[i]);
 		}
-		i++;
 	}
 	va_end(ap);
 	return (length);
