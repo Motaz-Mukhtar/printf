@@ -1,44 +1,118 @@
 #include "main.h"
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <stdarg.h>
+#include <string.h>
+#include <stdlib.h>
+#include <limits.h>
+#include <stdio.h>
 /**
- * _printf - This fucntion make the same way like pritf
- * @format: String
+ * myprintf - create a fucntion just like printf
+ * @format: string type
  * Return: 0.
  */
-int _printf(const char *format, ...)
+int myprintf(const char *format, ...)
 {
-	unsigned int length, i;
-	va_list ap;
+	if (format == NULL)
+		return (0);
 
-	va_start(ap, format);
-	length = strlen(format);
-	for (i = 0; i < length; i++)
+	va_list valist;
+	va_start(valist, format);
+
+	int num = 0;
+	char *token = NULL;
+	int i = 0;
+	int len = strlen(format);
+	int nprinted = 0;
+	int found = 0;
+
+	while (format[i] != '\0')
 	{
-		if (format[i] == '%')
+		num = 0;
+		found = 0;
+		token = NULL;
+
+		if ((format[i] == '%') && ((i + 1) < len))
 		{
-			if (format[i + 1] == 'd')
-				printf("%d", va_arg(ap, int));
-			if (format[i + 1] == 's')
-				printf("%s", va_arg(ap, char *));
-			if (format[i + 1] == 'c')
-				printf("%c", va_arg(ap, int));
-		}
-		else
-		{
-			if ((format[i] == 'd' && format[i - 1] == '%') ||
-			      (format[i] == 's' && format[i - 1] == '%') ||
-			      (format[i] == 'c' && format[i - 1] == '%'))
+			switch(format[i + 1])
 			{
-				if (format[i] == 'n' && format[i - 1] == '\\')
-					putchar('\n');
+				case 'd':
+					{
+						found = 1;
+
+						int str[40];
+						int j = 0;
+
+						num = va_arg(valist, int);
+
+						int temp = num;
+
+						if (num < 0)
+							num = -num;
+						while (num != 0)
+						{
+							str[j++] = (num % 10);
+							num /= 10;
+						}
+						if (temp < 0)
+							str[j++] = '-';
+						nprinted += j;
+						j--;
+						
+						while (j >= 0)
+						{
+							if (str[j] != '-')
+								putchar(str[j--] + '0');
+							else
+								putchar(str[j--]);
+						}
+					}
+					break;
+				case 's':
+					{
+						found = 1;
+
+						token = va_arg(valist, char *);
+						if (token != NULL)
+						{
+							int j = 0;
+
+							while (token[j] != '\0')
+							{
+								nprinted++;
+								putchar(token[j]);
+								j++;
+							}
+						}
+					}
+					break;
+				case 'c':
+					{
+						found = 1;
+
+						token = va_arg(valist, char *);
+						if (token != NULL)
+						{
+							int j = 0;
+
+							while (token[j] != '\0')
+							{
+								nprinted++;
+								putchar(token[j]);
+								j++;
+							}
+						}
+					}
+					break;
 			}
-			else
-				printf("%c", format[i]);
+			if (found != 0)
+			{
+				i += 2;
+				continue;
+			}
 		}
+		putchar(format[i]);
+		nprinted++;
+		i++;
 	}
-	va_end(ap);
-	return (length);
+	va_end(valist);
+	return (len);
 }
