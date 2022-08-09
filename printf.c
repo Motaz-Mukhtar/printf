@@ -15,9 +15,9 @@ int _printf(const char *format, ...)
 	int key = 1;
 
 	va_start(ap, format);
-	length = strlen(format);
+	length = strlen(format) - 1;
 	if (format == NULL)
-		return (length);
+		return (0);
 	for (i = 0; i < length; i++)
 	{
 		if (format[i] == '%' && (format[i + 1] != 'd' && format[i + 1] != 's' &&
