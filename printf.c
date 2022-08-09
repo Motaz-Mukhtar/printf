@@ -12,12 +12,15 @@ int _printf(const char *format, ...)
 {
 	unsigned int length, i;
 	va_list ap;
+	int key = 1;
 
 	va_start(ap, format);
 	length = strlen(format);
 	for (i = 0; i < length; i++)
 	{
-		if (format[i] == '%')
+		if (format[i] == '%' && (format[i + 1] != 'd' && format[i + 1] != 's' && format[i + 1] != 'c'))
+			key = 0;
+		if (format[i] == '%' && key == 1)
 		{
 			if (format[i + 1] == 'd')
 				printf("%d", va_arg(ap, int));
