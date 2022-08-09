@@ -16,9 +16,12 @@ int _printf(const char *format, ...)
 
 	va_start(ap, format);
 	length = strlen(format);
+	if (format == NULL)
+		return (0);
 	for (i = 0; i < length; i++)
 	{
-		if (format[i] == '%' && (format[i + 1] != 'd' && format[i + 1] != 's' && format[i + 1] != 'c'))
+		if (format[i] == '%' && (format[i + 1] != 'd' && 
+		    format[i + 1] != 's' && format[i + 1] != 'c'))
 			key = 0;
 		if (format[i] == '%' && key == 1)
 		{
@@ -28,15 +31,17 @@ int _printf(const char *format, ...)
 				printf("%s", va_arg(ap, char *));
 			if (format[i + 1] == 'c')
 				printf("%c", va_arg(ap, int));
+			if (format[i + 1] == 'i')
+				printf("%i", va_arg(ap, int));
 		}
 		else
 		{
 			if ((format[i] == 'd' && format[i - 1] == '%') ||
 			      (format[i] == 's' && format[i - 1] == '%') ||
-			      (format[i] == 'c' && format[i - 1] == '%'))
+			      (format[i] == 'c' && format[i - 1] == '%') ||
+			      (format[i] == 'i' && format[i - 1] == '%'))
 			{
-				if (format[i] == 'n' && format[i - 1] == '\\')
-					putchar('\n');
+				continue;
 			}
 			else
 				printf("%c", format[i]);
