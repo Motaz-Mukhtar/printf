@@ -93,7 +93,7 @@ int _printf(const char *format, ...)
 						putchar(tokenC);
 					}
 					break;
-				default:
+				case '%':
 					i += 1;
 					break;
 			}
