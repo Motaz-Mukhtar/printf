@@ -15,10 +15,10 @@ int _printf(const char *format, ...)
 	int key = 1;
 
 	va_start(ap, format);
-	length = strlen(format - 1);
+	length = strlen(format) - 1;
 	if (format == NULL)
 		return (0);
-	for (i = 0; i <= length; i++)
+	for (i = 0; i < length; i++)
 	{
 		if (format[i] == '%' && (format[i + 1] != 'd' && format[i + 1] != 's' &&
 		format[i + 1] != 'c'))
