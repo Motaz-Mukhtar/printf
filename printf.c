@@ -20,8 +20,8 @@ int _printf(const char *format, ...)
 		return (0);
 	for (i = 0; i < length; i++)
 	{
-		if (format[i] == '%' && (format[i + 1] != 'd' && 
-		    format[i + 1] != 's' && format[i + 1] != 'c'))
+		if (format[i] == '%' && (format[i + 1] != 'd' && format[i + 1] != 's' &&
+		format[i + 1] != 'c'))
 			key = 0;
 		if (format[i] == '%' && format[i + 1] == '%')
 			i += 1;
@@ -39,9 +39,9 @@ int _printf(const char *format, ...)
 		else
 		{
 			if ((format[i] == 'd' && format[i - 1] == '%') ||
-			      (format[i] == 's' && format[i - 1] == '%') ||
-			      (format[i] == 'c' && format[i - 1] == '%') ||
-			      (format[i] == 'i' && format[i - 1] == '%'))
+			(format[i] == 's' && format[i - 1] == '%') ||
+			(format[i] == 'c' && format[i - 1] == '%') ||
+			(format[i] == 'i' && format[i - 1] == '%'))
 			{
 				continue;
 			}
