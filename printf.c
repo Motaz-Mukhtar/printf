@@ -21,7 +21,7 @@ int _printf(const char *format, ...)
 		return (0);
 	if (length < 0)
 		return (0);
-	while (i = 0; i < length; i++)
+	for (i = 0; i < length; i++)
 	{
 		if (format[i] == '%' && (format[i + 1] != 'd' && format[i + 1] != 's' &&
 		format[i + 1] != 'c'))
