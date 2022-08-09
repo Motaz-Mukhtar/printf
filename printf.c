@@ -18,8 +18,8 @@ int _printf(const char *format, ...)
 	length = strlen(format) - 1;
 	if (format == NULL)
 		return (0);
-	length = strlen(format);
-	for (i = 0; i < length; i++)
+	i = 0;
+	while (format[i] != '\0')
 	{
 		if (format[i] == '%' && (format[i + 1] != 'd' && format[i + 1] != 's' &&
 		format[i + 1] != 'c'))
@@ -49,6 +49,7 @@ int _printf(const char *format, ...)
 			else
 				printf("%c", format[i]);
 		}
+		i++;
 	}
 	va_end(ap);
 	return (length);
