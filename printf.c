@@ -5,25 +5,26 @@
 #include <limits.h>
 #include <stdio.h>
 /**
- * myprintf - create a fucntion just like printf
+ * _printf - create a fucntion just like printf
  * @format: string type
  * Return: 0.
  */
-int myprintf(const char *format, ...)
+int _printf(const char *format, ...)
 {
-	if (format == NULL)
-		return (0);
-
 	va_list valist;
-	va_start(valist, format);
-
 	int num = 0;
 	char *token = NULL;
 	int i = 0;
 	int len = strlen(format);
 	int nprinted = 0;
 	int found = 0;
+	int str[40];
+	int temp;
+	int j;
 
+	va_start(valist, format);
+	if (format == NULL)
+		return (0);
 	while (format[i] != '\0')
 	{
 		num = 0;
@@ -38,12 +39,11 @@ int myprintf(const char *format, ...)
 					{
 						found = 1;
 
-						int str[40];
-						int j = 0;
+						j = 0;
 
 						num = va_arg(valist, int);
 
-						int temp = num;
+						temp = num;
 
 						if (num < 0)
 							num = -num;
@@ -73,7 +73,7 @@ int myprintf(const char *format, ...)
 						token = va_arg(valist, char *);
 						if (token != NULL)
 						{
-							int j = 0;
+							j = 0;
 
 							while (token[j] != '\0')
 							{
@@ -91,7 +91,7 @@ int myprintf(const char *format, ...)
 						token = va_arg(valist, char *);
 						if (token != NULL)
 						{
-							int j = 0;
+							j = 0;
 
 							while (token[j] != '\0')
 							{
