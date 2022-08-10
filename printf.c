@@ -13,7 +13,7 @@ int _printf(const char *format, ...)
 	va_list ap;
 	int i = 0, length;
 
-	length = strlen(format);
+	length = strlen(format) - 1;
 	if (!format || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 	va_start(ap, format);
@@ -36,4 +36,19 @@ int _printf(const char *format, ...)
 	}
 	va_end(ap);
 	return (length);
+}
+int main(void)
+{
+	int len, len2;
+
+	len = _printf("%c", 'S');
+	len2 = printf("%c", 'S');
+	fflush(stdout);
+	if (len != len2)
+	{
+		printf("Lengths differ.\n");
+		fflush(stdout);
+		return (1);
+	}
+	return (0);
 }
