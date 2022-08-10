@@ -92,29 +92,10 @@ int print_number(int n)
 	}
 	return (0);
 }
-int print_char(va_list ap)
-{
-	char c = va_arg(ap, int);
+int print_char(va_list ap);
 
-	if (c == '\0')
-	{
-		return (write(1, &c, 1));
-	}
-	putchar(c);
-	return (1);
-}
-int print_str(va_list ap)
-{
-	char *argument = va_arg(ap, char *);
-	int sum = 0;
+int print_str(va_list ap);
 
-	if (!argument)
-	{
-		sum += _puts("(null)", 0);
-		return (sum);
-	}
-	return (_puts(argument, 0));
-}
 int print_nbr(va_list ap)
 {
 	return (print_number(va_arg(ap, int)));

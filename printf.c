@@ -34,19 +34,34 @@ int _printf(const char *format, ...)
 	va_end(ap);
 	return (length);
 }
-
-int main(void)
+/**
+ * print_char - char function print
+ * @ap: va_list type
+ * Return 1.
+ */
+int print_char(va_list ap)
 {
-	int len, len2;
+	char c = va_arg(ap, int);
 
-	len = _printf("Let's print a simple sentence.\n");
-	len2 = printf("Let's print a simple sentence.\n");
-	fflush(stdout);
-	if (len != len2)
+	if (c == '\0')
+		return (write(1, &c, 1));
+	putchar(c);
+	return (1);
+}
+/**
+ * print_str - string function print
+ * @ap: va_list type
+ * Return 0.
+ */
+int print_str(va_list ap)
+{
+	char *argument = va_arg(ap, char *);
+	int sum = 0;
+
+	if (!argument)
 	{
-		printf("Lengths differ.\n");
-		fflush(stdout);
-		return (1);
+		sum += _puts("(null)", 0);
+		return (sum);
 	}
-	return (0);
+	return (_puts(argument, 0));
 }
