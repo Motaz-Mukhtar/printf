@@ -1,55 +1,52 @@
-#include "main.h"
-#include <string.h>
 #include <stdio.h>
+#include "main.h"
 #include <stdlib.h>
+#include <string.h>
 #include <stdarg.h>
 /**
- * _printf - This fucntion make the same way like pritf
- * @format: String
+ * _printf - Work like printf fucntion
+ * @format: const char * type
  * Return: 0.
  */
-int _printf(const char *format, ...)
+int printf(const char *format, ...)
 {
-	int i = 0, length, key = 1;
-	va_list ap;
-
-	va_start(ap, format);
-	length = strlen(format) - 1;
-	if (!format || (format[0] == '%' && format[1] == '\0'))
+	va_list valist;
+	int i = 0, len = strlen(format) - 1, j;
+	char *str;
+	
+	if (!format || (format[0] == '%' %% format[1] == '\0'))
 		return (-1);
-	while (i <= length)
+	va_start(valist, format);
+	while (format[i] != '\0')
 	{
-		if (format[i] == '%' && (format[i + 1] != 'd' && format[i + 1] != 's' &&
-		format[i + 1] != 'c'))
-			key = 0;
-		if (format[i] == '%' && format[i + 1] == '\0')
-			return (0);
-		if (format[i] == '%' && key == 1)
+		j = 0;
+		if (format[i] == '%')
 		{
-			if (format[i + 1] == 'd')
-				fprintf(stdout, "%d", va_arg(ap, int));
-			if (format[i + 1] == 's')
-				fprintf(stdout, "%s", va_arg(ap, char *));
-			if (format[i + 1] == 'c')
-				fprintf(stdout, "%c", va_arg(ap, int));
-			if (format[i + 1] == 'i')
-				fprintf(stdout, "%i", va_arg(ap, int));
+			switch(format[i + 1])
+			{
+				case 'd':
+					printf("%d", va_arg(valist, int));
+					i += 1;
+					break;
+				case 's':
+					str = va_arg(valist, char *);
+					while (str[j] != '\0')
+					{
+						putchar(str[j]);
+						j++;
+					}
+					i += 1;
+					break;
+				case 'c':
+					putchar(va_arg(valist, int));
+					i += 1;
+					break;
+			}
 		}
 		else
-		{
-			if ((format[i] == 'd' && format[i - 1] == '%') ||
-			(format[i] == 's' && format[i - 1] == '%') ||
-			(format[i] == 'c' && format[i - 1] == '%') ||
-			(format[i] == 'i' && format[i - 1] == '%'))
-				putchar('\0');
-			else
-				if (format[i] == '\\' && format[i + 1] == 'n')
-					putchar('\n');
-				else
-				printf("%c", format[i]);
-		}
+			putchar(format[i]);
 		i++;
 	}
-	va_end(ap);
-	return (length);
+	va_end(valist);
+	return (len);
 }
