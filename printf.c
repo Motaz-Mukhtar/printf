@@ -1,79 +1,39 @@
 #include "main.h"
+#include <stdlib.h>
 #include <stdarg.h>
-#include <stddef.h>
 #include <string.h>
 #include <stdio.h>
-
 /**
- * get_op - select function of operator
- * @c: char type
- * Return: 0.
+ * _printf - do the smae thing like printf fucntion
+ * @format: format String.
+ * Return: Always 0.
  */
-
-int (*get_op(const char c))(va_list)
-{
-	int i = 0;
-
-	flags_p fp[] = {
-		{"c", print_char},
-		{"s", print_str},
-		{"i", print_nbr},
-		{"d", print_nbr},
-		{"%", print_percent}
-	};
-	while (i < 14)
-	{
-		if (c == fp[i].c[0])
-		{
-			return (fp[i].f);
-		}
-		i++;
-	}
-	return (NULL);
-}
-
-/**
- * _printf - make the same like printf func
- * @format: format string
- * Return: 0.
- */
-
 int _printf(const char *format, ...)
 {
 	va_list ap;
-	int sum = 0, i = 0;
-	int (*func)();
+	int i = 0, length;
 
+	length = strlen(format);
 	if (!format || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 	va_start(ap, format);
-
-	while (format[i])
+	while (i < length)
 	{
 		if (format[i] == '%')
 		{
 			if (format[i + 1] != '\0')
-				func = get_op(format[i + 1]);
-			if (func == NULL)
 			{
-				putchar(format[i]);
-				sum ++;
-				i++;
-			}
-			else
-			{
-				sum += func(ap);
-				i += 2;
-				continue;
+				if (format[i + 1] == 's')
+					print_str(ap);
+				if (format[i + 1] == 'c')
+					print_char(ap);
+				i += 1;
 			}
 		}
 		else
-		{
 			putchar(format[i]);
-			sum++;
-			i++;
-		}
+		i++;
 	}
 	va_end(ap);
-	return (sum);
+	return (length);
 }
