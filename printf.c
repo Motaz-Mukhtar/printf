@@ -15,7 +15,7 @@ int _printf(const char *format, ...)
 	if (!format || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 	va_start(valist, format);
-	while (i < length - 1)
+	while (i < length)
 	{
 		j = 0;
 		if (format[i] == '%')
@@ -42,6 +42,9 @@ int _printf(const char *format, ...)
 						putchar(va_arg(valist, int));
 						i += 1;
 					}
+					break;
+				case '%':
+					i += 1;
 					break;
 			}
 		}
