@@ -41,13 +41,12 @@ int _printf(const char *format, ...)
 			(format[i] == 's' && format[i - 1] == '%') ||
 			(format[i] == 'c' && format[i - 1] == '%') ||
 			(format[i] == 'i' && format[i - 1] == '%'))
-				continue;
+				i += 1;
 			else
 				printf("%c", format[i]);
 		}
 		i++;
 	}
-	putchar('\n');
 	va_end(ap);
 	return (length);
 }
