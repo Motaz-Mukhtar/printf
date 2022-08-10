@@ -23,7 +23,7 @@ int _printf(const char *format, ...)
 		return (0);
 	if (!format || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
-	while(format[i] != '\0')
+	while(i < length)
 	{
 		if (format[i] == '%' && (format[i + 1] != 'd' && format[i + 1] != 's' &&
 		format[i + 1] != 'c'))
