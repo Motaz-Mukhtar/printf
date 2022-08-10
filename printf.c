@@ -21,9 +21,9 @@ int _printf(const char *format, ...)
 			if (format[i + 1] != '\0')
 			{
 				if (format[i + 1] == 's')
-					print_str(ap);
+					printf("%s", va_arg(ap, char *));
 				if (format[i + 1] == 'c')
-					print_char(ap);
+					printf("%c", va_arg(ap, int));
 				i += 1;
 			}
 		}
@@ -33,35 +33,4 @@ int _printf(const char *format, ...)
 	}
 	va_end(ap);
 	return (length);
-}
-/**
- * print_char - char function print
- * @ap: va_list type
- * Return 1.
- */
-int print_char(va_list ap)
-{
-	char c = va_arg(ap, int);
-
-	if (c == '\0')
-		return (write(1, &c, 1));
-	putchar(c);
-	return (1);
-}
-/**
- * print_str - string function print
- * @ap: va_list type
- * Return 0.
- */
-int print_str(va_list ap)
-{
-	char *argument = va_arg(ap, char *);
-	int sum = 0;
-
-	if (!argument)
-	{
-		sum += _puts("(null)", 0);
-		return (sum);
-	}
-	return (_puts(argument, 0));
 }
