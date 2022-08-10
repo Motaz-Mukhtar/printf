@@ -1,8 +1,5 @@
 #include "main.h"
-#include <stdlib.h>
-#include <stdarg.h>
 #include <string.h>
-#include <stdio.h>
 /**
  * _printf - do the smae thing like printf fucntion
  * @format: format String.
