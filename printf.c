@@ -11,7 +11,7 @@
 int _printf(const char *format, ...)
 {
 	va_list valist;
-	int i = 0, len = strlen(format) - 1, j;
+	int i = 0, len = strlen(format), j;
 	char *str;
 	
 	if (!format || (format[0] == '%' && format[1] == '\0'))
@@ -50,7 +50,7 @@ int _printf(const char *format, ...)
 			}
 		}
 		else
-			printf("%c", format[i]);
+			putchar(format[i]);
 		i++;
 	}
 	va_end(valist);
