@@ -50,7 +50,7 @@ int _printf(const char *format, ...)
 			}
 		}
 		else
-			putchar(format[i]);
+			printf("%c", format[i]);
 		i++;
 	}
 	va_end(valist);
