@@ -127,7 +127,7 @@ int print_binary(va_list ap);
 int print_octal(va_list ap);
 int print_hexa_lower(va_list ap);
 int print_hexa_upper(va_list ap);
-int print_percent(va_list ap)
+int print_percent(va_list args __attribute__((unused)))
 {
 	return (putchar('%'));
 }
