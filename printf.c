@@ -43,6 +43,9 @@ int _printf(const char *format, ...)
 			(format[i] == 'i' && format[i - 1] == '%'))
 				putchar('\0');
 			else
+				if (format[i] == '\\' && format[i + 1] == 'n')
+					putchar('\n');
+				else
 				printf("%c", format[i]);
 		}
 		i++;
