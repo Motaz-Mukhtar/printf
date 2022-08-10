@@ -8,13 +8,13 @@
  * @format: const char * type
  * Return: 0.
  */
-int printf(const char *format, ...)
+int _printf(const char *format, ...)
 {
 	va_list valist;
 	int i = 0, len = strlen(format) - 1, j;
 	char *str;
 	
-	if (!format || (format[0] == '%' %% format[1] == '\0'))
+	if (!format || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 	va_start(valist, format);
 	while (format[i] != '\0')
@@ -25,10 +25,13 @@ int printf(const char *format, ...)
 			switch(format[i + 1])
 			{
 				case 'd':
+					{
 					printf("%d", va_arg(valist, int));
 					i += 1;
+					}
 					break;
 				case 's':
+					{
 					str = va_arg(valist, char *);
 					while (str[j] != '\0')
 					{
@@ -36,10 +39,13 @@ int printf(const char *format, ...)
 						j++;
 					}
 					i += 1;
+					}
 					break;
 				case 'c':
+					{
 					putchar(va_arg(valist, int));
 					i += 1;
+					}
 					break;
 			}
 		}
