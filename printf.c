@@ -17,7 +17,7 @@ int _printf(const char *format, ...)
 	if (!format || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 	va_start(valist, format);
-	while (format[i])
+	while (format[i] != '\0')
 	{
 		j = 0;
 		if (format[i] == '%')
@@ -33,7 +33,7 @@ int _printf(const char *format, ...)
 				case 's':
 					{
 					str = va_arg(valist, char *);
-					while (str[j] != '\0')
+					while (str[j])
 					{
 						putchar(str[j]);
 						j++;
