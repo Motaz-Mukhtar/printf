@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+int _printf(const char *format, ...);
+
 int convert_alpha_numeric(int nb, int upper)
 {
 	if (nb >= 10)
@@ -90,8 +92,6 @@ int print_number(int n)
 	}
 	return (0);
 }
-
-int _printf(const char *format, ...);
 int print_char(va_list ap)
 {
 	char c = va_arg(ap, int);
@@ -115,34 +115,14 @@ int print_str(va_list ap)
 	}
 	return (_puts(argument, 0));
 }
-int print_str_unprintable(va_list ap);
-int print_str_reverse(va_list ap);
-int print_ptr(va_list ap);
 int print_nbr(va_list ap)
 {
 	return (print_number(va_arg(ap, int)));
 }
-int print_unsigned(va_list ap);
-int print_binary(va_list ap);
-int print_octal(va_list ap);
-int print_hexa_lower(va_list ap);
-int print_hexa_upper(va_list ap);
 int print_percent(va_list args __attribute__((unused)))
 {
 	return (putchar('%'));
 }
 int print_rot13(va_list ap);
-
-/**
- * struct flags_printf - struct 
- * @c: flag
- * @f: pointer
- */
-
-typedef struct flags_printf
-{
-	char *c;
-	int (*f)(va_list);
-} flags_p;
 
 #endif
