@@ -41,20 +41,3 @@ int _printf(const char *format, ...)
 	return (length);
 }
 
-int main(void)
-{
-	int len, len2, len3, len4;
-	
-	len = _printf("Let's print a simple sentence.\n");
-	len2 = printf("Let's print a simple sentence.\n");
-	len3 = _printf("%c", 'S');
-	len4 =  printf("%c", 'S');
-	fflush(stdout);
-	if ((len != len2) || (len3 != len4)) 
-	{
-		printf("Lengths differ.\n");
-		fflush(stdout);
-		return (1);
-	}
-	return (0);
-}
