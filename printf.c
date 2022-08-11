@@ -27,7 +27,8 @@ int _printf(const char *format, ...)
 		{
 			str = va_arg(valist, char *);
 			if (str == NULL)
-				return (-1);
+				printf("(null)");
+			else
 			if (format[i + 1] == 's')
 			{
 				while (str[j])
