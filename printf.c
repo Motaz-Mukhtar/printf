@@ -26,7 +26,7 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			str = va_arg(valist, char *);
-			if (str == NULL)
+			if (str == (char *)0)
 				printf("(null)");
 			else
 			if (format[i + 1] == 's')
