@@ -23,7 +23,7 @@ int _printf(const char *format, ...)
 	while (format[i] != '\0')
 	{
 		j = 0;
-		if (format[i] == '%' && (format[i + 1] != '\0'))
+		if (format[i] == '%')
 		{
 			if (format[i + 1] == 's')
 			{
@@ -45,6 +45,8 @@ int _printf(const char *format, ...)
 				fprintf(stdout, "%c", va_arg(valist, int));
 			if (format[i + 1] == 'd')
 				fprintf(stdout, "%d", va_arg(valist, int));
+			if (format[i + 1] == '%')
+				fprintf(stdout, "%%");
 			i += 1;
 		}
 		else
