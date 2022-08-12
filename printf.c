@@ -1,4 +1,5 @@
 #include "main.h"
+#include <math.h>
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
@@ -38,7 +39,12 @@ int _printf(const char *format, ...)
 			if (format[i + 1] == 'c')
 				fprintf(stdout, "%c", va_arg(valist, int));
 			if (format[i + 1] == 'd' || format[i + 1] == 'i')
-				fprintf(stdout, "%d", va_arg(valist, int));
+			{
+				int num = va_arg(valist, int);
+				fprintf(stdout, "%d", num);
+				length = floor(log10(abs(num))) - 1;
+				return (length);
+			}
 			if (format[i + 1] == '%')
 				fprintf(stdout, "%%");
 			i += 1;
