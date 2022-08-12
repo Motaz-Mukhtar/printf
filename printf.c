@@ -42,7 +42,7 @@ int _printf(const char *format, ...)
 				int num = va_arg(valist, int);
 				fprintf(stdout, "%d", num);
 				if (num == 0)
-					return (2);
+					return (1);
 				if (num < 0)
 				{
 					num *= (-1);
