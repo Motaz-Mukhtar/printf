@@ -11,26 +11,36 @@
 int _printf(const char *format, ...)
 {
 	va_list valist;
-	int i = 0;
+	int i = 0, j;
 	int length = 0;
 	char *str;
 
 	if (!format || (format[0] == '%' && format[1] == '\0'))
-		return (0);
+		return (-1);
 	if (format == NULL || format == 0)
-		return (0);
+		return (-1);
 	va_start(valist, format);
 	while (format[i] != '\0')
 	{
+		j = 0;
 		if (format[i] == '%')
 		{
 			str = va_arg(valist, char *);
-			if (str == NULL)
+			if (str ==  (char *)0)
 				printf("(null)");
 			else
 			{
 			if (format[i + 1] == 's')
-				fprintf(stdout, "%s", va_arg(valist, char *));
+			{
+				str = va_arg(valist, char*);
+				while (str[j] && !(str[j] <= 0))
+				{
+					putchar(str[j]);
+					j++;
+					length++;
+				}
+				length -= 1;
+			}
 			}
 			if (format[i + 1] == 'c')
 				fprintf(stdout, "%c", va_arg(valist, int));
