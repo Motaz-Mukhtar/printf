@@ -25,22 +25,19 @@ int _printf(const char *format, ...)
 		j = 0;
 		if (format[i] == '%')
 		{
-			str = va_arg(valist, char *);
-			if (str ==  (char *)0)
-				printf("(null)");
-			else
-			{
 			if (format[i + 1] == 's')
 			{
-				str = va_arg(valist, char*);
-				while (str[j] && !(str[j] <= 0))
+				str = va_arg(valist, char *);
+				if (str == NULL)
+					printf("(null)");
+				else
+				while (str[j])
 				{
 					putchar(str[j]);
 					j++;
 					length++;
 				}
 				length -= 1;
-			}
 			}
 			if (format[i + 1] == 'c')
 				fprintf(stdout, "%c", va_arg(valist, int));
