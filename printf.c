@@ -16,9 +16,9 @@ int _printf(const char *format, ...)
 	char *str;
 
 	if (!format || (format[0] == '%' && format[1] == '\0'))
-		return (-1);
-	if (format == NULL)
-		return (-1);
+		return (0);
+	if (format == NULL || format == 0)
+		return (0);
 	va_start(valist, format);
 	while (format[i] != '\0')
 	{
@@ -26,7 +26,7 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			str = va_arg(valist, char *);
-			if (str == (char *)0)
+			if (str == NULL)
 				printf("(null)");
 			else
 			if (format[i + 1] == 's')
