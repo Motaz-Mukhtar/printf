@@ -49,7 +49,12 @@ int _printf(const char *format, ...)
 			{
 				int num = va_arg(valist, int);
 				fprintf(stdout, "%d", num);
-				length = intLen(num) - 1;
+				while (num > 0)
+				{
+					num = num / 10;
+					length++;
+				}
+				length -= 1;
 			}
 			if (format[i + 1] == '%')
 				fprintf(stdout, "%%");
