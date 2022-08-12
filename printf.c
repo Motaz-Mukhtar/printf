@@ -11,7 +11,7 @@
 int _printf(const char *format, ...)
 {
 	va_list valist;
-	int i = 0, j;
+	int i = 0;
 	int length = 0;
 	char *str;
 
@@ -22,22 +22,15 @@ int _printf(const char *format, ...)
 	va_start(valist, format);
 	while (format[i] != '\0')
 	{
-		j = 0;
 		if (format[i] == '%')
 		{
 			str = va_arg(valist, char *);
 			if (str == NULL)
 				printf("(null)");
 			else
-			if (format[i + 1] == 's')
 			{
-				while (str[j])
-				{
-					putchar(str[j]);
-					j++;
-					length++;
-				}
-				length -= 1;
+			if (format[i + 1] == 's')
+				fprintf(stdout, "%s", va_arg(valist, char *));
 			}
 			if (format[i + 1] == 'c')
 				fprintf(stdout, "%c", va_arg(valist, int));
@@ -54,4 +47,3 @@ int _printf(const char *format, ...)
 	va_end(valist);
 	return (length);
 }
-
