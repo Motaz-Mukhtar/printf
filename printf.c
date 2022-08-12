@@ -14,16 +14,20 @@ int _printf(const char *format, ...)
 	int i = 0, j;
 	int length = 0;
 	char *str;
+	int key;
 
-	if (!format || (format[0] == '%' && format[1] == '\0'))
+	if (!format)
 		return (-1);
 	if (format == NULL || format == 0)
 		return (-1);
 	va_start(valist, format);
 	while (format[i] != '\0')
 	{
+		key = 0;
+		if (format[0] == '%' && format[1] == '\0')
+			key = 1;
 		j = 0;
-		if (format[i] == '%' && format[i + 1] == '\0')
+		if (format[i] == '%' || key == 1)
 		{
 			if (format[i + 1] == 's')
 			{
