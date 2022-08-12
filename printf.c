@@ -23,9 +23,9 @@ int _printf(const char *format, ...)
 	va_start(valist, format);
 	while (format[i] != '\0')
 	{
-		key = 0;
+		key = 1;
 		if (format[i] == '%' && format[i + 1] == '\0')
-			key = 1;
+			key = 0;
 		j = 0;
 		if (format[i] == '%' || key == 1)
 		{
