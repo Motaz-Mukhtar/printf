@@ -23,10 +23,10 @@ int _printf(const char *format, ...)
 	while (format[i] != '\0')
 	{
 		j = 0;
-		if (format[i] == '%')
+		if (format[i] == '%' && (format[i + 1] == 's' ||
+		    format[i + 1] == 'c' || format[i + 1] == 'd'))
 		{
-			if (format[i + 1] == 's' && (format[i + 1] == 's' ||
-			    format[i + 1] == 'c' || format[i + 1] == 'd'))
+			if (format[i + 1] == 's')
 			{
 				str = va_arg(valist, char *);
 				if (str == NULL)
