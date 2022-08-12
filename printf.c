@@ -59,20 +59,3 @@ int _printf(const char *format, ...)
 	va_end(valist);
 	return (length);
 }
-
-int main(void)
-{
-	int len, len2;
-
-	len = _printf("%d", 1024);
-	len2 = printf("%d", 1024);
-	fflush(stdout);
-	if (len != len2)
-	{
-		printf("Length\n");
-		printf("%d    %d", len, len2);
-		fflush(stdout);
-		return (1);
-	}
-	return (0);
-}
