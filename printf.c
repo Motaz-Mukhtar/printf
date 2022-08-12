@@ -46,7 +46,7 @@ int _printf(const char *format, ...)
 					num = num / 10;
 					length++;
 				}
-				return (length);
+				length -= 1;
 			}
 			if (format[i + 1] == '%')
 				fprintf(stdout, "%%");
