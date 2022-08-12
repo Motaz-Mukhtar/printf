@@ -14,7 +14,6 @@ int _printf(const char *format, ...)
 	int i = 0, j;
 	int length = 0;
 	char *str;
-	int key;
 
 	if (!format)
 		return (-1);
@@ -23,11 +22,8 @@ int _printf(const char *format, ...)
 	va_start(valist, format);
 	while (format[i] != '\0')
 	{
-		key = 1;
-		if (format[i] == '%' && format[i + 1] == '\0')
-			key = 0;
 		j = 0;
-		if (format[i] == '%' && key == 1)
+		if (format[i] == '%' && (format[i + 1] != '\0'))
 		{
 			if (format[i + 1] == 's')
 			{
