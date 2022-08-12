@@ -2,14 +2,6 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdarg.h>
-int intLen(int x)
-{
-	int i;
-	for (i = 0; x != 0; ++i)
-		x /= 10;
-	return (i);
-}
-
 /**
  * _printf - do the smae thing like printf fucntion
  * @format: format String.
@@ -54,7 +46,7 @@ int _printf(const char *format, ...)
 					num = num / 10;
 					length++;
 				}
-				length -= 1;
+				return (length);
 			}
 			if (format[i + 1] == '%')
 				fprintf(stdout, "%%");
@@ -66,4 +58,21 @@ int _printf(const char *format, ...)
 	}
 	va_end(valist);
 	return (length);
+}
+
+int main(void)
+{
+	int len, len2;
+
+	len = _printf("%d", 1024);
+	len2 = printf("%d", 1024);
+	fflush(stdout);
+	if (len != len2)
+	{
+		printf("Length\n");
+		printf("%d    %d", len, len2);
+		fflush(stdout);
+		return (1);
+	}
+	return (0);
 }
