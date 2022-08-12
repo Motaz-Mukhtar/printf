@@ -29,15 +29,17 @@ int _printf(const char *format, ...)
 			{
 				str = va_arg(valist, char *);
 				if (str == NULL)
-					printf("(null)");
-				else
+				{
+					str = "(null)";
+				}
 				while (str[j])
 				{
-					putchar(str[j]);
+					fprintf(stdout, "%c", str[j]);
 					j++;
 					length++;
 				}
 				length -= 1;
+			
 			}
 			if (format[i + 1] == 'c')
 				fprintf(stdout, "%c", va_arg(valist, int));
